@@ -47,7 +47,7 @@ function navColor() {
 }
 
 window.addEventListener("load", () => {
-  navColor();
+  // navColor();
 });
 
 document.addEventListener("scroll", () => {
