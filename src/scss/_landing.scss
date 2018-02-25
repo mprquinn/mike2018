@@ -1,0 +1,63 @@
+.landing {
+  background-color: #f65b48;
+  background-image: url("../images/profile-color.jpg");
+  background-size: 80%;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  height: 0;
+  padding-bottom: 50%;
+  transform: scale(0.8) translateY(25%);
+  transition: all 0.6s var(--easeInQuart);
+}
+
+.landing--loaded {
+  background-size: cover;
+  background-position: 0 0;
+  transform: scale(1) translateY(0);
+}
+
+.landing__title {
+  display: inline-block;
+  color: #1d1d1d;
+  font-size: 3em;
+  line-height: 1em;
+  font-weight: 700;
+  margin-top: -0.6em;
+
+  @media screen and (min-width: 1000px) {
+    font-size: 6em;
+  }
+}
+
+.landing__title span {
+  display: inline-block;
+  transform: scale(0.8) translateY(-55%);
+  opacity: 0;
+  transition: all 0.6s var(--easeInQuart);
+  
+  .landing--loaded & {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.landing__title .char5 {
+  width: 0.25em;
+}
+
+@for $i from 1 through 10 {
+  .landing__title .char#{$i} {
+    transition-delay: #{$i*30}ms
+  }
+}
+
+.landing__subtitle {
+  font-size: 1.3em;
+  line-height: 1.2em;
+  color: #ffffff;
+  margin-left: 0.4em;
+
+  @media screen and (min-width: 1000px) {
+    font-size: 1.3em;
+  }
+}

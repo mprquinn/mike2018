@@ -1,0 +1,103 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root {
+  --navPad: 0px;
+  --easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --orange: #f65b48;
+  --lightOrange: #f67148;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  font-size: 18px;
+  line-height: 1.3em;
+  overflow-x: hidden;
+  padding-top: var(--navPad);
+}
+
+.site-wrap {
+  height: 100vh;
+  padding-left: 50px;
+}
+
+.container {
+  margin-left: 50px;
+}
+
+.section__title {
+  position: relative;
+  display: inline-block;
+  color: #1d1d1d;
+  font-size: 3em;
+  line-height: 1.2em;
+  font-weight: 700;
+  margin-top: -0.6em;
+  z-index: 2;
+  margin-left: 50px;
+
+  @media screen and (min-width: 1000px) {
+    font-size: 6em;
+  }
+}
+
+.section__title--right {
+  float: right;
+}
+
+.button {
+  display: inline-block;
+  background: #1d1d1d;
+  color: #efefef;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1em;
+}
