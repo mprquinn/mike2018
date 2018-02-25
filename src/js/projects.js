@@ -4,6 +4,8 @@ class Project extends React.Component {
 
     this.state = {
       currentProject: 0,
+      beginning: true,
+      end: false,
       projects: [
         {
           title: "Moxie's",
@@ -33,15 +35,17 @@ class Project extends React.Component {
     // remove anim class to reset
     setTimeout(() => {
       this.setState({
+        animating: false,
         animationDirection: ""
       });
-    }, duration/2.1);
+    }, duration / 2.5);
     // add in state
     setTimeout(() => {
       this.setState({
+        animating: true,
         animationDirection: "in"
       });
-    }, duration/2);
+    }, duration / 2);
     // remove animation
     setTimeout(() => {
       this.setState({
@@ -50,21 +54,80 @@ class Project extends React.Component {
       });
     }, duration);
   }
+  checkEnd() {
+    if (this.state.currentProject === this.state.projects.length - 1) {
+      this.setState({
+        end: true
+      });
+    }
+    if (this.state.currentProject === 0) {
+      this.setState({
+        beginning: true
+      });
+    }
+  }
   changeProject(dir) {
     if (dir === "forward") {
       if (this.state.currentProject < this.state.projects.length - 1) {
         const currentProject = this.state.currentProject + 1;
+        // this.fireAnimations(6000);
         this.setState({
+          beginning: false,
+          end: false,
           currentProject
         });
       }
     } else {
       if (this.state.currentProject > 0) {
         const currentProject = this.state.currentProject - 1;
+        // this.fireAnimations(6000);
         this.setState({
-          currentProject
+          currentProject,
+          beginning: false,
+          end: false
         });
       }
+    }
+    setTimeout(() => {
+      this.checkEnd();
+    }, 1);
+  }
+  renderArrows() {
+    if (this.state.beginning) {
+      return (
+        <div className="project__arrows">
+          <a
+            className="project__arrow project__arrow--right"
+            onClick={() => this.changeProject("forward")}
+          >
+            >
+          </a>
+        </div>
+      );
+    } else if (this.state.end) {
+      return (
+        <div className="project__arrows">
+          <a
+            className="project__arrow project__arrow--left"
+            onClick={() => this.changeProject("backward")}
+          >{`<`}</a>
+        </div>
+      );
+    } else {
+      return (
+        <div className="project__arrows">
+          <a
+            className="project__arrow project__arrow--left"
+            onClick={() => this.changeProject("backward")}
+          >{`<`}</a>
+          <a
+            className="project__arrow project__arrow--right"
+            onClick={() => this.changeProject("forward")}
+          >
+            >
+          </a>
+        </div>
+      );
     }
   }
   componentDidMount() {}
@@ -73,47 +136,44 @@ class Project extends React.Component {
     return (
       <div>
         <h1 className="section__title">Projects</h1>
-    <div className={this.state.animating ? `project project--animated` : `project`}>
-      <span className="project__count">
-        0<span>{this.state.currentProject+1}</span>
-        </span>
-      <div className={`project__text project__text--${this.state.animationDirection}`}>
-
-        <div className="project__text__wrap">
-
-          <h2 className="project__title">
-            {curr.title}
-          </h2>
-          <p className="project__description">
-            {curr.description}
-          </p>
-        </div>
-
-        <ul className="project__tech">
-          {
-            curr.technologies.map(tech => {
-              return (
-                <li className="project__tech__item" key={tech}>
-                  {tech}
-                </li>
-              )
-            })
+        <div
+          className={
+            this.state.animating ? `project project--animated` : `project`
           }
-        </ul>
+        >
+          <span className="project__count">
+            0<span>{this.state.currentProject + 1}</span>
+          </span>
+          <div
+            className={`project__text project__text--${
+              this.state.animationDirection
+            }`}
+          >
+            <div className="project__text__wrap">
+              <h2 className="project__title">{curr.title}</h2>
+              <p className="project__description">{curr.description}</p>
+            </div>
 
-        <div className="project__arrows">
-          <a className="project__arrow project__arrow--left" onClick={() => this.changeProject("bacward")}>
-            {`<`}</a>
-              <a className="project__arrow project__arrow--right" onClick={() => this.changeProject("forward")}>></a>
+            <ul className="project__tech">
+              {curr.technologies.map(tech => {
+                return (
+                  <li className="project__tech__item" key={tech}>
+                    {tech}
+                  </li>
+                );
+              })}
+            </ul>
 
+            {this.renderArrows()}
+
+            <a href={curr.url} target="_blank" className="button project__view">
+              View Project
+            </a>
+          </div>
+          <img src={curr.image} className="project__image" />
         </div>
-        <a href={curr.url} target="_blank" className="button project__view">View Project</a>
       </div>
-      <img src={curr.image} className="project__image" />
-    </div>
-
-      </div>
-    )
+    );
   }
 }
 
