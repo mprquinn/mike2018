@@ -18,7 +18,7 @@ class Project extends React.Component {
           description:
             "Full site build for Local 510. Design by Concorde Group. 2017.",
           technologies: ["Drupal", "SASS", "Babel", "Gulp", "PHP"],
-          image: "dist/images/moxies.jpg",
+          image: "dist/images/local510.jpg",
           url: "https://local510.ca"
         }
       ]

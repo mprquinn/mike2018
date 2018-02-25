@@ -1,7 +1,7 @@
 .navigation {
   height: 12.5vh;
   padding: 3em 50px 1em 0;
-  
+
   @media screen and (min-width: 768px) {
     height: 25vh;
   }
@@ -19,7 +19,8 @@
   letter-spacing: 0.2em;
   font-size: 1.5em;
   opacity: 0;
-  
+  color: var(--navColor);
+
   .navigation--pinned & {
     opacity: 1;
   }
@@ -49,7 +50,7 @@
 
 .navigation a {
   display: inline-block;
-  color: #1d1d1d;
+  color: var(--navColor);
   text-decoration: none;
   float: right;
 }
