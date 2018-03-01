@@ -6,6 +6,8 @@ class Project extends React.Component {
       currentProject: 0,
       beginning: true,
       end: false,
+      animationDirection: "",
+      animationDuration: "6000",
       projects: [
         {
           title: "Moxie's",
@@ -36,14 +38,14 @@ class Project extends React.Component {
     setTimeout(() => {
       this.setState({
         animating: false,
-        animationDirection: ""
+        animationDirection: "in"
       });
     }, duration / 2.5);
     // add in state
     setTimeout(() => {
       this.setState({
         animating: true,
-        animationDirection: "in"
+        animationDirection: ""
       });
     }, duration / 2);
     // remove animation
@@ -70,22 +72,26 @@ class Project extends React.Component {
     if (dir === "forward") {
       if (this.state.currentProject < this.state.projects.length - 1) {
         const currentProject = this.state.currentProject + 1;
-        // this.fireAnimations(6000);
-        this.setState({
-          beginning: false,
-          end: false,
-          currentProject
-        });
+        this.fireAnimations(1200);
+        setTimeout(() => {
+          this.setState({
+            beginning: false,
+            end: false,
+            currentProject
+          });
+        }, 600);
       }
     } else {
       if (this.state.currentProject > 0) {
         const currentProject = this.state.currentProject - 1;
-        // this.fireAnimations(6000);
-        this.setState({
-          currentProject,
-          beginning: false,
-          end: false
-        });
+        this.fireAnimations(1200);
+        setTimeout(() => {
+          this.setState({
+            currentProject,
+            beginning: false,
+            end: false
+          });
+        }, 600);
       }
     }
     setTimeout(() => {
@@ -97,7 +103,11 @@ class Project extends React.Component {
       return (
         <div className="project__arrows">
           <a
-            className="project__arrow project__arrow--right"
+            className="project__arrow project__arrow--disabled"
+            onClick={() => this.changeProject("backward")}
+          >{`<`}</a>
+          <a
+            className="project__arrow"
             onClick={() => this.changeProject("forward")}
           >
             >
@@ -108,20 +118,26 @@ class Project extends React.Component {
       return (
         <div className="project__arrows">
           <a
-            className="project__arrow project__arrow--left"
+            className="project__arrow"
             onClick={() => this.changeProject("backward")}
           >{`<`}</a>
+          <a
+            className="project__arrow project__arrow--disabled"
+            onClick={() => this.changeProject("forward")}
+          >
+            >
+          </a>
         </div>
       );
     } else {
       return (
         <div className="project__arrows">
           <a
-            className="project__arrow project__arrow--left"
+            className="project__arrow"
             onClick={() => this.changeProject("backward")}
           >{`<`}</a>
           <a
-            className="project__arrow project__arrow--right"
+            className="project__arrow"
             onClick={() => this.changeProject("forward")}
           >
             >
@@ -141,7 +157,11 @@ class Project extends React.Component {
             this.state.animating ? `project project--animated` : `project`
           }
         >
-          <span className="project__count">
+          <span
+            className={`project__count project__count--${
+              this.state.animationDirection
+            }`}
+          >
             0<span>{this.state.currentProject + 1}</span>
           </span>
           <div
@@ -150,7 +170,10 @@ class Project extends React.Component {
             }`}
           >
             <div className="project__text__wrap">
-              <h2 className="project__title">{curr.title}</h2>
+              <h2 className="project__title">
+                {curr.title}
+                {this.state.animationDirection}
+              </h2>
               <p className="project__description">{curr.description}</p>
             </div>
 

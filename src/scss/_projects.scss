@@ -1,3 +1,5 @@
+$animTiming: all 0.6s linear;
+
 .projects {
 }
 
@@ -8,6 +10,7 @@
   position: relative;
   background: #ffffff;
   z-index: 1;
+  perspective: 75vw;
 
   @media screen and (min-width: 768px) {
     grid-template-rows: repeat(4, minmax(100px, 250px));
@@ -29,6 +32,20 @@
   background: #efefef;
   z-index: 2;
   box-shadow: 0px 30px 60px -20px rgba(0, 0, 0, 0.3);
+  transform: rotateY(0);
+  opacity: 1;
+
+  .project--animated & {
+    transition: $animTiming;
+  }
+
+  &.project__text--out {
+    transform: rotateY(-15deg);
+  }
+
+  &.project__text--in {
+    transform: rotateY(-15deg);
+  }
 
   @media screen and (min-width: 768px) {
     grid-column: 1 / 7;
@@ -48,9 +65,6 @@
   margin-top: -0.15em;
   color: var(--lightOrange);
 
-  span {
-  }
-
   @media screen and (min-width: 768px) {
     grid-row: 3 / span 2;
   }
@@ -60,6 +74,27 @@
     grid-row: 2 / span 2;
     font-size: 20em;
   }
+}
+
+.project__count span {
+  height: 1em;
+  display: inline-block;
+  opacity: 1;
+  transform: translateY(0);
+
+  .project--animated & {
+    transition: $animTiming;
+  }
+}
+
+.project__count--in span {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.project__count--out span {
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 .project__view {
@@ -192,4 +227,8 @@
 .project__arrow {
   background: #1d1d1d;
   color: #efefef;
+}
+
+.project__arrow--disabled {
+  opacity: 0.5;
 }
