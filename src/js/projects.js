@@ -96,7 +96,7 @@ class Project extends React.Component {
     }
     setTimeout(() => {
       this.checkEnd();
-    }, 1);
+    }, 601);
   }
   renderArrows() {
     if (this.state.beginning) {
@@ -169,10 +169,11 @@ class Project extends React.Component {
               this.state.animationDirection
             }`}
           >
-            <div className="project__text__wrap">
+            <div className={`project__text__wrap project__text__wrap--${
+              this.state.animationDirection
+            }`}>
               <h2 className="project__title">
                 {curr.title}
-                {this.state.animationDirection}
               </h2>
               <p className="project__description">{curr.description}</p>
             </div>
