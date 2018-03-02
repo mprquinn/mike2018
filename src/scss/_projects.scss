@@ -1,12 +1,12 @@
 $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .project {
+  position: relative;
+  z-index: 1;
   display: grid;
+  background: #ffffff;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  position: relative;
-  background: #ffffff;
-  z-index: 1;
   perspective: 75vw;
 
   @media screen and (min-width: 768px) {
@@ -19,18 +19,18 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .project__text {
-  display: flex;
-  grid-column: 1 / -1;
-  grid-row: 4 / -1;
   position: relative;
+  z-index: 2;
+  display: flex;
   flex-direction: row;
-  justify-content: center;
   padding: 2em 2em 50px 50px;
   background: #efefef;
-  z-index: 2;
   box-shadow: 0px 30px 60px -20px rgba(0, 0, 0, 0.3);
-  transform: rotateY(0);
   opacity: 1;
+  transform: rotateY(0);
+  grid-column: 1 / -1;
+  grid-row: 4 / -1;
+  justify-content: center;
 
   .project--animated & {
     transition: all 0.6s $easeInOutSine;
@@ -55,27 +55,27 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .project__count {
-  grid-column: 2 / span 2;
-  grid-row: 3 / span 1;
-  font-size: 12em;
-  font-weight: 800;
   margin-top: -0.15em;
   color: var(--accentLight);
+  font-weight: 800;
+  font-size: 12em;
+  grid-column: 2 / span 2;
+  grid-row: 3 / span 1;
 
   @media screen and (min-width: 768px) {
     grid-row: 3 / span 2;
   }
 
   @media screen and (min-width: 1200px) {
+    font-size: 20em;
     grid-column: 2 / span 2;
     grid-row: 2 / span 2;
-    font-size: 20em;
   }
 }
 
 .project__count span {
-  height: 1em;
   display: inline-block;
+  height: 1em;
   opacity: 1;
   transform: translateY(0);
 
@@ -85,13 +85,13 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .project__count--in span {
-  transform: translateY(100%);
   opacity: 0;
+  transform: translateY(100%);
 }
 
 .project__count--out span {
-  transform: translateY(-100%);
   opacity: 0;
+  transform: translateY(-100%);
 }
 
 .project__view {
@@ -106,11 +106,11 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .project__text__wrap {
+  padding-right: 0.5em;
+  opacity: 1;
+  transform: translateX(0) translateZ(150px);
   // width: 66%;
   flex: 1;
-  padding-right: 0.5em;
-  transform: translateX(0) translateZ(150px);
-  opacity: 1;
 
   .project--animated & {
     transition: all 0.6s $easeInOutSine;
@@ -136,10 +136,10 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .project__title {
-  font-size: 3em;
-  font-weight: 700;
   margin-top: 1em;
   margin-bottom: 0.33em;
+  font-weight: 700;
+  font-size: 3em;
   grid-column: 1 / span 2;
 
   @media screen and (min-width: 768px) {
@@ -149,24 +149,24 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .project__image-wrap {
   position: relative;
-  grid-column: 5 / -1;
-  grid-row: 1 / -1;
   overflow: hidden;
   background: var(--accentLight);
+  grid-column: 5 / -1;
+  grid-row: 1 / -1;
 }
 
 .project__image {
   position: absolute;
-  height: 250%;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.2;
   z-index: 1;
-  transform: skewX(20deg) translateX(0);
+  height: 250%;
+  opacity: 0.2;
   transition: all 0.6s $easeInOutSine;
+  transform: skewX(20deg) translateX(0);
 
   .project--animated & {
     transition: all 0.6s $easeInOutSine;
@@ -198,9 +198,9 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .project__description {
   position: relative;
-  color: #4a4a4a;
-  width: 100%;
   padding-bottom: 2em;
+  width: 100%;
+  color: #4a4a4a;
 
   @media screen and (min-width: 630px) {
   }
@@ -222,7 +222,7 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   .project--animated & {
     transition: all 0.6s $easeInOutSine;
   }
-  
+
   &.project__tech--out {
     opacity: 0;
     transform: translateX(-20%);
@@ -241,13 +241,13 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .project__tech__item {
-  font-weight: 700;
-  border-bottom: 1px solid #1d1d1d;
-  padding-bottom: 0.5em;
   margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #1d1d1d;
   color: #1d1d1d;
-  transform: translateX(0);
+  font-weight: 700;
   opacity: 1;
+  transform: translateX(0);
 }
 
 .project__tech__icon {
@@ -270,20 +270,20 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .project__arrows {
   position: absolute;
-  bottom: 0;
   right: 0;
+  bottom: 0;
 }
 
 .project__arrow {
   display: inline-block;
+  float: left;
+  margin-right: 0;
   width: 45px;
   height: 45px;
   text-align: center;
-  line-height: 45px;
-  font-weight: 800;
   text-decoration: none;
-  margin-right: 0;
-  float: left;
+  font-weight: 800;
+  line-height: 45px;
 }
 
 .project__arrow {

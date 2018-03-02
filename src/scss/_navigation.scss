@@ -1,6 +1,6 @@
 .navigation {
-  height: 12.5vh;
   padding: 3em 50px 1em 0;
+  height: 12.5vh;
 
   @media screen and (min-width: 768px) {
     height: 25vh;
@@ -15,11 +15,11 @@
 }
 
 .navigation__title {
-  font-weight: 800;
+  color: var(--navColor);
   letter-spacing: 0.2em;
+  font-weight: 800;
   font-size: 1.5em;
   opacity: 0;
-  color: var(--navColor);
 
   .navigation--pinned & {
     opacity: 1;
@@ -32,12 +32,12 @@
 }
 
 .navigation li {
-  width: 20%;
   display: inline-block;
-  text-decoration: none;
   padding-right: 1em;
   padding-left: 0.33em;
+  width: 20%;
   border-left: 0.5em solid transparent;
+  text-decoration: none;
 
   &:hover {
     border-color: var(--orange);
@@ -50,7 +50,7 @@
 
 .navigation a {
   display: inline-block;
+  float: right;
   color: var(--navColor);
   text-decoration: none;
-  float: right;
 }

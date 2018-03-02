@@ -1,9 +1,9 @@
 .social {
+  margin-top: 6em;
+  margin-left: -50px;
   width: 100%;
   background: var(--accentLight);
   text-align: center;
-  margin-top: 6em;
-  margin-left: -50px;
 }
 
 .social-wrap {
@@ -15,8 +15,8 @@
   display: inline-block;
   width: 45px;
   height: 45px;
-  border-radius: 50%;
   border: 2px solid transparent;
+  border-radius: 50%;
   background: var(--accentLight);
   line-height: 45px;
 
@@ -39,6 +39,6 @@
 }
 
 .social__copyright {
-  color: #ffffff;
   padding-bottom: 6em;
+  color: #ffffff;
 }

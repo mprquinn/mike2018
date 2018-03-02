@@ -87,9 +87,9 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
+  font: inherit;
+  font-size: 100%;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -124,8 +124,8 @@ q:after {
   content: none;
 }
 table {
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
 
 :root {
@@ -139,16 +139,16 @@ table {
 }
 
 body {
-  font-family: "Karla", sans-serif;
-  font-size: 18px;
-  line-height: 1.3em;
   overflow-x: hidden;
   padding-top: var(--navPad);
+  font-size: 18px;
+  font-family: "Karla", sans-serif;
+  line-height: 1.3em;
 }
 
 .site-wrap {
-  height: 100vh;
   padding-left: 50px;
+  height: 100vh;
 }
 
 .container {
@@ -157,14 +157,14 @@ body {
 
 .section__title {
   position: relative;
+  z-index: 2;
   display: inline-block;
+  margin-top: -0.6em;
+  margin-left: 50px;
   color: #1d1d1d;
+  font-weight: 700;
   font-size: 3em;
   line-height: 1.2em;
-  font-weight: 700;
-  margin-top: -0.6em;
-  z-index: 2;
-  margin-left: 50px;
 
   @media screen and (min-width: 1000px) {
     font-size: 6em;
@@ -177,11 +177,11 @@ body {
 
 .button {
   display: inline-block;
+  padding: 1em;
   background: var(--accentLight);
   color: #efefef;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 1em;
 }
