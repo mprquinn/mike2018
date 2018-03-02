@@ -1,11 +1,6 @@
 .social {
   width: 100%;
-  background: #f65b48;
-  background: linear-gradient(
-    to bottom right,
-    var(--orange),
-    var(--lightOrange)
-  );
+  background: var(--accentLight);
   text-align: center;
   margin-top: 6em;
   margin-left: -50px;
@@ -22,7 +17,7 @@
   height: 45px;
   border-radius: 50%;
   border: 2px solid transparent;
-  background: var(--orange);
+  background: var(--accentLight);
   line-height: 45px;
 
   &:first-of-type {
@@ -40,7 +35,7 @@
 }
 
 .social-wrap__item:hover img {
-  fill: var(--lightOrange);
+  fill: var(--accentLight);
 }
 
 .social__copyright {

@@ -1,8 +1,5 @@
 $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
-.projects {
-}
-
 .project {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -63,7 +60,7 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   font-size: 12em;
   font-weight: 800;
   margin-top: -0.15em;
-  color: var(--lightOrange);
+  color: var(--accentLight);
 
   @media screen and (min-width: 768px) {
     grid-row: 3 / span 2;
@@ -150,26 +147,52 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   }
 }
 
+.project__image-wrap {
+  position: relative;
+  grid-column: 5 / -1;
+  grid-row: 1 / -1;
+  overflow: hidden;
+  background: var(--accentLight);
+}
+
 .project__image {
-  display: block;
-  grid-column: 1 / -1;
-  grid-row: 1 / 3;
-  width: 100%;
-  border-right: 50px solid #ffffff;
-  margin-top: -3.55em;
+  position: absolute;
+  height: 250%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: -1;
+  opacity: 0.2;
+  z-index: 1;
+  transform: skewX(20deg) translateX(0);
+  transition: all 0.6s $easeInOutSine;
+
+  .project--animated & {
+    transition: all 0.6s $easeInOutSine;
+  }
+
+  &.project__image--out {
+    opacity: 0;
+    transform: translateX(100%) skewX(20deg);
+  }
+
+  &.project__image--in {
+    opacity: 0;
+    transform: translateX(-100%) skewX(20deg);
+  }
 
   @media screen and (min-width: 768px) {
-    grid-column: 5 / -1;
-    grid-row: 1 / span 1;
+    // grid-column: 5 / -1;
+    // grid-row: 1 / span 1;
   }
 
   @media screen and (min-width: 1365px) {
-    grid-column: 4 / -1;
+    // grid-column: 4 / -1;
   }
 
   @media screen and (min-width: 1500px) {
-    margin-top: -9.55em;
+    // margin-top: -9.55em;
   }
 }
 
@@ -193,6 +216,22 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 .project__tech {
   margin-top: 3em;
   padding-bottom: 3em;
+  opacity: 1;
+  transform: translateX(0);
+
+  .project--animated & {
+    transition: all 0.6s $easeInOutSine;
+  }
+  
+  &.project__tech--out {
+    opacity: 0;
+    transform: translateX(-20%);
+  }
+
+  &.project__tech--in {
+    opacity: 0;
+    transform: translateX(20%);
+  }
 
   @media screen and (min-width: 630px) {
   }
@@ -207,6 +246,8 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   padding-bottom: 0.5em;
   margin-bottom: 1em;
   color: #1d1d1d;
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .project__tech__icon {

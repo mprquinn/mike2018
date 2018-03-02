@@ -134,6 +134,8 @@ table {
   --orange: #f65b48;
   --lightOrange: #f67148;
   --navColor: #000000;
+  --accentLight: #ef6267;
+  --accentDark: #452352;
 }
 
 body {
@@ -175,11 +177,7 @@ body {
 
 .button {
   display: inline-block;
-  background: linear-gradient(
-    to bottom right,
-    var(--orange),
-    var(--lightOrange)
-  );
+  background: var(--accentLight);
   color: #efefef;
   text-align: center;
   text-decoration: none;

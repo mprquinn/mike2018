@@ -14,7 +14,7 @@ class Project extends React.Component {
           description:
             "Front-End Development for Moxie's as part of the Simple Simple Ads development team. A smidgen of back-end work as well. 2015.",
           technologies: ["Drupal", "SASS", "JS", "PHP"],
-          image: "dist/images/moxies.jpg",
+          image: "dist/images/moxies-test.jpg",
           url: "https://www.moxies.com"
         },
         {
@@ -165,20 +165,36 @@ class Project extends React.Component {
             0<span>{this.state.currentProject + 1}</span>
           </span>
           <div
-            className={`project__text project__text--${
-              this.state.animationDirection
-            }`}
+            className={
+              this.state.animationDirection !== ``
+                ? `project__text project__text--${
+                    this.state.animationDirection
+                  }`
+                : `project__text`
+            }
           >
-            <div className={`project__text__wrap project__text__wrap--${
-              this.state.animationDirection
-            }`}>
-              <h2 className="project__title">
-                {curr.title}
-              </h2>
+            <div
+              className={
+                this.state.animationDirection !== ``
+                  ? `project__text__wrap project__text__wrap--${
+                      this.state.animationDirection
+                    }`
+                  : `project__text__wrap`
+              }
+            >
+              <h2 className="project__title">{curr.title}</h2>
               <p className="project__description">{curr.description}</p>
             </div>
 
-            <ul className="project__tech">
+            <ul
+              className={
+                this.state.animationDirection !== ``
+                  ? `project__tech project__tech--${
+                      this.state.animationDirection
+                    }`
+                  : `project__tech`
+              }
+            >
               {curr.technologies.map(tech => {
                 return (
                   <li className="project__tech__item" key={tech}>
@@ -194,7 +210,18 @@ class Project extends React.Component {
               View Project
             </a>
           </div>
-          <img src={curr.image} className="project__image" />
+          <div className="project__image-wrap">
+            <img
+              src={curr.image}
+              className={
+                this.state.animationDirection !== ``
+                  ? `project__image project__image--${
+                      this.state.animationDirection
+                    }`
+                  : `project__image`
+              }
+            />
+          </div>
         </div>
       </div>
     );
