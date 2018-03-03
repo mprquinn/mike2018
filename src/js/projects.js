@@ -20,10 +20,26 @@ class Project extends React.Component {
         {
           title: "Local 510",
           description:
-            "Full site build for Local 510. Design by Concorde Group. 2017.",
-          technologies: ["Drupal", "SASS", "Babel", "Gulp", "PHP"],
+            "Full site build for Local 510. Design by Concorde Group as part of the Simple Simple Ads development team. 2017.",
+          technologies: ["Drupal", "SASS", "JS", "Babel", "Gulp", "PHP"],
           image: "dist/images/project-local510-duotone.png",
           url: "https://local510.ca"
+        },
+        {
+          title: "Spredfast",
+          description:
+            "Miscellaneous components and pages for the Spredfast website as part of the Simple Simple Ads development team. Notably landing page banners. 2017 - 2018.",
+          technologies: ["Drupal", "SASS", "JS", "Babel", "Grunt", "Figma/Sketch"],
+          image: "dist/images/project-spredfast-duotone.jpg",
+          url: "https://spredfast.com"
+        },
+        {
+          title: "Chop",
+          description:
+            "Full theme build and front-end interactive elements developed for Chop Steakhouse's website as part of the Simple Simple Ads development team. 2016.",
+          technologies: ["Drupal", "SASS", "JS", "Babel", "Gulp"],
+          image: "dist/images/project-chop-duotone.jpg",
+          url: "https://chop.ca"
         }
       ]
     };
