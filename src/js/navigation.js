@@ -1,49 +1,21 @@
 const nav = document.querySelector("nav");
-const navList = document.querySelector(".navigation ul");
-const navTop = navList.getBoundingClientRect().top;
-const navHeight = nav.getBoundingClientRect().height;
+const body = document.querySelector("body");
+const firstSection = document.querySelector(".landing");
 
 function pinNav() {
-  const top = window.pageYOffset || document.documentElement.scrollTop;
-  const navPinclassName = "navigation--pinned";
-  if (top >= navHeight) {
-    document.documentElement.style.setProperty("--navPad", `${navHeight}px`);
-    nav.classList.add(navPinclassName);
+  const topOff = firstSection.getBoundingClientRect().top;
+  console.log(topOff);
+  if (topOff <= 0) {
+    console.log('passed');
+    nav.classList.add("navigation--pinned");
+    body.classList.add("body--padded");
   } else {
-    nav.classList.remove(navPinclassName);
-    document.documentElement.style.setProperty("--navPad", "0px");
+    nav.classList.remove("navigation--pinned");
+    body.classList.remove("body--padded");
   }
 }
 
-function navColor() {
-  const sections = document.querySelectorAll("section");
-
-  const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.75 // 25% visible
-  };
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.intersectionRatio > 0) {
-        
-        const classSlug = `${entry.target.className}--in-view`;
-        entry.target.classList.add(classSlug);
-        // if you want to stop watching, you can 
-        observer.unobserve(entry.target);
-      }
-    }, options) 
-  });
-  
-  
-  sections.forEach(section => {
-    observer.observe(section);
-  });
-}
-
-navColor();
-
 document.addEventListener("scroll", () => {
-  // pinNav();
+  console.log("test");
+  pinNav();
 });
