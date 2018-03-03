@@ -229,6 +229,7 @@ class Project extends React.Component {
           <div className="project__image-wrap">
             <img
               src={curr.image}
+              alt={`Project Image: ${curr.title}`}
               className={
                 this.state.animationDirection !== ``
                   ? `project__image project__image--${
