@@ -16,40 +16,34 @@ function pinNav() {
 }
 
 function navColor() {
-  const defaultColor = "#000000";
-  const sections = [
-    {
-      name: "landing",
-      offset: document.querySelector(".landing").getBoundingClientRect().top,
-      height: document.querySelector(".landing").getBoundingClientRect().height,
-      color: "#ffffff"
-    },
-    {
-      name: "projects",
-      offset: document
-        .querySelector(".projects .section__title")
-        .getBoundingClientRect().top,
-      height: document.querySelector(".projects").getBoundingClientRect()
-        .height,
-      color: "#ffffff"
-    }
-  ];
-  document.addEventListener("scroll", () => {
-    const top = window.pageYOffset || document.documentElement.scrollTop;
-    sections.forEach(section => {
-      if (top >= section.offset && top < section.height + section.offset) {
-        document.documentElement.style.setProperty(`--navColor`, section.color);
-      } else {
-        document.documentElement.style.setProperty(`--navColor`, defaultColor);
+  const sections = document.querySelectorAll("section");
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.75 // 25% visible
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0) {
+        
+        const classSlug = `${entry.target.className}--in-view`;
+        entry.target.classList.add(classSlug);
+        // if you want to stop watching, you can 
+        observer.unobserve(entry.target);
       }
-    });
+    }, options) 
+  });
+  
+  
+  sections.forEach(section => {
+    observer.observe(section);
   });
 }
 
-window.addEventListener("load", () => {
-  // navColor();
-});
+navColor();
 
 document.addEventListener("scroll", () => {
-  pinNav();
+  // pinNav();
 });
