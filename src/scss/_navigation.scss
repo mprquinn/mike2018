@@ -6,13 +6,45 @@
   @media screen and (min-width: 768px) {
     height: 25vh;
   }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    bottom: 0;
+    left: 50%;
+    z-index: -1;
+    width: 0;
+    background: #ffffff;
+    content: "";
+    // transform: translateX(50vw);
+    transition: all 0.3s var(--easeInQuart);
+  }
+}
+
+.navigation .container {
+  position: relative;
 }
 
 .navigation--pinned {
   position: fixed;
   top: 0;
-  right: 50px;
+  right: 0;
+  left: 0;
   z-index: 10;
+  padding: 1em 0;
+  width: 100%;
+  height: auto;
+
+  .container {
+    margin: 0 50px;
+  }
+
+  &:after {
+    right: 0;
+    left: 0;
+    width: 200%;
+  }
 }
 
 .navigation__title {
@@ -21,13 +53,15 @@
   font-weight: 800;
   font-size: 1.5em;
   opacity: 0;
-
+  
   .navigation--pinned & {
     opacity: 1;
   }
 }
 
 .navigation ul {
+  position: relative;
+  z-index: 2;
   float: right;
   height: 1em;
 }
@@ -52,6 +86,6 @@
 .navigation a {
   display: inline-block;
   float: right;
-  color: var(--navColor);
+  color: #1d1d1d;
   text-decoration: none;
 }
