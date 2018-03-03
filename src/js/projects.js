@@ -14,7 +14,7 @@ class Project extends React.Component {
           description:
             "Front-End Development for Moxie's as part of the Simple Simple Ads development team. A smidgen of back-end work as well. 2015.",
           technologies: ["Drupal", "SASS", "JS", "PHP"],
-          image: "dist/images/moxies-test.jpg",
+          image: "dist/images/project-moxies-duotone.png",
           url: "https://www.moxies.com"
         },
         {
@@ -22,7 +22,7 @@ class Project extends React.Component {
           description:
             "Full site build for Local 510. Design by Concorde Group. 2017.",
           technologies: ["Drupal", "SASS", "Babel", "Gulp", "PHP"],
-          image: "dist/images/local510.jpg",
+          image: "dist/images/project-local510-duotone.png",
           url: "https://local510.ca"
         }
       ]

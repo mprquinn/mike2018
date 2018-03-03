@@ -161,7 +161,6 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 .project__image-wrap {
   position: relative;
   overflow: hidden;
-  background: var(--accentLight);
   grid-column: 5 / -1;
   grid-row: 1 / -1;
 }
@@ -171,13 +170,13 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  left: -50%;
   z-index: -1;
   z-index: 1;
-  height: 250%;
-  opacity: 0.2;
+  // height: 250%;
+  // opacity: 0.2;
   transition: all 0.6s $easeInOutSine;
-  transform: skewX(20deg) translateX(0);
+  transform: translateX(0);
 
   @media screen and (min-width: 768px) {
     // grid-column: 5 / -1;
@@ -198,12 +197,12 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
   &.project__image--out {
     opacity: 0;
-    transform: translateX(100%) skewX(20deg);
+    transform: translateX(100%);
   }
 
   &.project__image--in {
     opacity: 0;
-    transform: translateX(-100%) skewX(20deg);
+    transform: translateX(-100%);
   }
 }
 
@@ -263,7 +262,6 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .project__tech__icon {
   display: inline-block;
-  float: right;
   margin-top: 0.8em;
 }
 
@@ -287,7 +285,6 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .project__arrow {
   display: inline-block;
-  float: left;
   margin-right: 0;
   width: 45px;
   height: 45px;
