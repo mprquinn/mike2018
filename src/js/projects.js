@@ -222,7 +222,7 @@ class Project extends React.Component {
 
             {this.renderArrows()}
 
-            <a href={curr.url} target="_blank" className="button project__view">
+            <a href={curr.url} target="_blank" rel="noopener" className="button project__view">
               View Project
             </a>
           </div>
