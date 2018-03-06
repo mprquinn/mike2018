@@ -17,98 +17,96 @@ document.addEventListener("scroll", () => {
   pinNav();
 });
 
+/* scrolling is a pain w/out jquery */
+// first add raf shim
+// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+window.requestAnimFrame = (function() {
+  return (
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function(callback) {
+      window.setTimeout(callback, 1000 / 60);
+    }
+  );
+})();
 
-/**
-    Smoothly scroll element to the given target (element.scrollTop)
-    for the given duration
+// main function
+function scrollToY(scrollTargetY, speed, easing) {
+  // scrollTargetY: the target scrollY property of the window
+  // speed: time in pixels per second
+  // easing: easing equation to use
 
-    Returns a promise that's fulfilled when done, or rejected if
-    interrupted
- */
-var smooth_scroll_to = function(element, target, duration) {
-  target = Math.round(target);
-  duration = Math.round(duration);
-  if (duration < 0) {
-      return Promise.reject("bad duration");
-  }
-  if (duration === 0) {
-      element.scrollTop = target;
-      return Promise.resolve();
-  }
+  var scrollY = window.scrollY || document.documentElement.scrollTop,
+    scrollTargetY = scrollTargetY || 0,
+    speed = speed || 2000,
+    easing = easing || "easeOutSine",
+    currentTime = 0;
 
-  var start_time = Date.now();
-  var end_time = start_time + duration;
+  // min time .1, max time .8 seconds
+  var time = Math.max(
+    0.1,
+    Math.min(Math.abs(scrollY - scrollTargetY) / speed, 0.8)
+  );
 
-  var start_top = element.scrollTop;
-  var distance = target - start_top;
-
-  // based on http://en.wikipedia.org/wiki/Smoothstep
-  var smooth_step = function(start, end, point) {
-      if(point <= start) { return 0; }
-      if(point >= end) { return 1; }
-      var x = (point - start) / (end - start); // interpolation
-      return x*x*(3 - 2*x);
-  }
-
-  return new Promise(function(resolve, reject) {
-      // This is to keep track of where the element's scrollTop is
-      // supposed to be, based on what we're doing
-      var previous_top = element.scrollTop;
-
-      // This is like a think function from a game loop
-      var scroll_frame = function() {
-          if(element.scrollTop != previous_top) {
-              reject("interrupted");
-              return;
-          }
-
-          // set the scrollTop for this frame
-          var now = Date.now();
-          var point = smooth_step(start_time, end_time, now);
-          var frameTop = Math.round(start_top + (distance * point));
-          element.scrollTop = frameTop;
-
-          // check if we're done!
-          if(now >= end_time) {
-              resolve();
-              return;
-          }
-
-          // If we were supposed to scroll but didn't, then we
-          // probably hit the limit, so consider it done; not
-          // interrupted.
-          if(element.scrollTop === previous_top
-              && element.scrollTop !== frameTop) {
-              resolve();
-              return;
-          }
-          previous_top = element.scrollTop;
-
-          // schedule next frame for execution
-          setTimeout(scroll_frame, 0);
+  // easing equations from https://github.com/danro/easing-js/blob/master/easing.js
+  var easingEquations = {
+    easeOutSine: function(pos) {
+      return Math.sin(pos * (Math.PI / 2));
+    },
+    easeInOutSine: function(pos) {
+      return -0.5 * (Math.cos(Math.PI * pos) - 1);
+    },
+    easeInOutQuint: function(pos) {
+      if ((pos /= 0.5) < 1) {
+        return 0.5 * Math.pow(pos, 5);
       }
+      return 0.5 * (Math.pow(pos - 2, 5) + 2);
+    }
+  };
 
-      // boostrap the animation process
-      setTimeout(scroll_frame, 0);
-  });
+  // add animation loop
+  function tick() {
+    currentTime += 1 / 60;
+
+    var p = currentTime / time;
+    var t = easingEquations[easing](p);
+
+    if (p < 1) {
+      requestAnimFrame(tick);
+
+      window.scrollTo(0, scrollY + (scrollTargetY - scrollY) * t);
+    } else {
+      window.scrollTo(0, scrollTargetY);
+    }
+  }
+
+  // call it once to get started
+  tick();
 }
 
 const navItems = Array.from(document.querySelectorAll(".navigation a"));
 
 setTimeout(() => {
-  const sections = document.querySelectorAll("section");
-  const sectionArray = Array.from(sections);
-  let distances = {
+  const currentScroll =
+    window.pageYOffset !== undefined
+      ? window.pageYOffset
+      : (document.documentElement || document.body.parentNode || document.body)
+          .scrollTop;
+  const distances = {
     landing: 0,
     projects: document.querySelector(".projects").getBoundingClientRect().top,
     social: document.querySelector(".social").getBoundingClientRect().top
   };
+  const navOffset = document
+    .querySelector(".navigation")
+    .getBoundingClientRect().height;
   navItems.forEach(item => {
-    item.addEventListener("click", (e) => {
+    item.addEventListener("click", e => {
       e.preventDefault();
       const scrollItem = item.getAttribute("href");
-      const distance = distances[scrollItem];
-      smooth_scroll_to(document.documentElement, distance, 500);
+      const scrollDistance = distances[scrollItem] + currentScroll;
+      scrollToY(scrollDistance - navOffset, 1000, "easeInOutSine");
     });
   });
 }, 10);

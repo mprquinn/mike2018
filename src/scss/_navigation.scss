@@ -4,9 +4,8 @@
   height: 12.5vh;
 
   @media screen and (min-width: 768px) {
-    
   }
-  
+
   @media screen and (min-width: 1000px) {
     padding: 3em 50px 1em 0;
     height: 25vh;
@@ -34,7 +33,6 @@
 .navigation--pinned {
   position: fixed;
   top: 0;
-  right: 0;
   left: 0;
   z-index: 10;
   padding: 1em 0;
@@ -58,7 +56,7 @@
   font-weight: 800;
   font-size: 1.5em;
   opacity: 0;
-  
+
   .navigation--pinned & {
     opacity: 1;
   }
@@ -69,17 +67,27 @@
   z-index: 2;
   float: right;
   height: 1em;
+  text-align: right;
+
+  @media screen and (min-width: 768px) {
+    text-align: left;
+  }
 }
 
 .navigation li {
   display: inline-block;
-  padding-right: 1em;
+  padding-right: 0.5em;
   padding-left: 0.33em;
   width: 20%;
-  border-left: 0.5em solid transparent;
+  border-bottom: 0.2em solid transparent;
+  text-align: center;
   text-decoration: none;
 
-  &:hover {
+  @media screen and (min-width: 768px) {
+    padding-right: 1em;
+  }
+
+  &:hover a {
     border-color: var(--accentDark);
   }
 }
@@ -90,7 +98,6 @@
 
 .navigation a {
   display: inline-block;
-  float: right;
   color: #1d1d1d;
   text-decoration: none;
 }
