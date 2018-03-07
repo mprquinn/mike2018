@@ -175,6 +175,7 @@ class Project extends React.Component {
     img.src = image;
   }
   componentWillMount() {
+    const landing = document.querySelector(".landing");
     const _this = this;
     const length = this.state.projects.length;
     let loaded = 0;
@@ -187,6 +188,7 @@ class Project extends React.Component {
           this.setState({
             loaded: true
           });
+          landing.classList.add("landing--loaded");
         }
       });
   }

@@ -12,7 +12,7 @@ function titleEffects() {
 titleEffects();
 
 window.addEventListener("load", () => {
-  load();
+  // load();
 })
 
 function load() {
