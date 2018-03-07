@@ -3,6 +3,7 @@ class Project extends React.Component {
     super();
 
     this.state = {
+      loaded: false,
       currentProject: 0,
       beginning: true,
       end: false,
@@ -29,7 +30,14 @@ class Project extends React.Component {
           title: "Spredfast",
           description:
             "Miscellaneous components and pages for the Spredfast website as part of the Simple Simple Ads development team. Notably landing page banners. 2017 - 2018.",
-          technologies: ["Drupal", "SASS", "JS", "Babel", "Grunt", "Figma/Sketch"],
+          technologies: [
+            "Drupal",
+            "SASS",
+            "JS",
+            "Babel",
+            "Grunt",
+            "Figma/Sketch"
+          ],
           image: "dist/images/project-spredfast-duotone.jpg",
           url: "https://spredfast.com"
         },
@@ -162,86 +170,115 @@ class Project extends React.Component {
       );
     }
   }
+  loadImages(image) {
+    let img = new Image();
+    img.src = image;
+  }
+  componentWillMount() {
+    const _this = this;
+    const length = this.state.projects.length;
+    let loaded = 0;
+    this.state.projects.forEach(
+      project => {
+        const image = project.image;
+        _this.loadImages(image);
+        loaded++;
+        if (loaded === length) {
+          this.setState({
+            loaded: true
+          });
+        }
+      });
+  }
   componentDidMount() {}
   render() {
-    const curr = this.state.projects[this.state.currentProject];
-    return (
-      <div>
-        <h1 className="section__title">Projects</h1>
-        <div
-          className={
-            this.state.animating ? `project project--animated` : `project`
-          }
-        >
-          <span
-            className={`project__count project__count--${
-              this.state.animationDirection
-            }`}
-          >
-            0<span>{this.state.currentProject + 1}</span>
-          </span>
+    if (this.state.loaded) {
+      const curr = this.state.projects[this.state.currentProject];
+      return (
+        <div>
+          <h1 className="section__title">Projects</h1>
           <div
             className={
-              this.state.animationDirection !== ``
-                ? `project__text project__text--${
-                    this.state.animationDirection
-                  }`
-                : `project__text`
+              this.state.animating ? `project project--animated` : `project`
             }
           >
+            <span
+              className={`project__count project__count--${
+                this.state.animationDirection
+              }`}
+            >
+              0<span>{this.state.currentProject + 1}</span>
+            </span>
             <div
               className={
                 this.state.animationDirection !== ``
-                  ? `project__text__wrap project__text__wrap--${
+                  ? `project__text project__text--${
                       this.state.animationDirection
                     }`
-                  : `project__text__wrap`
+                  : `project__text`
               }
             >
-              <h2 className="project__title">{curr.title}</h2>
-              <p className="project__description">{curr.description}</p>
+              <div
+                className={
+                  this.state.animationDirection !== ``
+                    ? `project__text__wrap project__text__wrap--${
+                        this.state.animationDirection
+                      }`
+                    : `project__text__wrap`
+                }
+              >
+                <h2 className="project__title">{curr.title}</h2>
+                <p className="project__description">{curr.description}</p>
+              </div>
+
+              <ul
+                className={
+                  this.state.animationDirection !== ``
+                    ? `project__tech project__tech--${
+                        this.state.animationDirection
+                      }`
+                    : `project__tech`
+                }
+              >
+                {curr.technologies.map(tech => {
+                  return (
+                    <li className="project__tech__item" key={tech}>
+                      {tech}
+                    </li>
+                  );
+                })}
+              </ul>
+
+              {this.renderArrows()}
+
+              <a
+                href={curr.url}
+                target="_blank"
+                rel="noopener"
+                className="button project__view"
+              >
+                View Project
+              </a>
             </div>
-
-            <ul
-              className={
-                this.state.animationDirection !== ``
-                  ? `project__tech project__tech--${
-                      this.state.animationDirection
-                    }`
-                  : `project__tech`
-              }
-            >
-              {curr.technologies.map(tech => {
-                return (
-                  <li className="project__tech__item" key={tech}>
-                    {tech}
-                  </li>
-                );
-              })}
-            </ul>
-
-            {this.renderArrows()}
-
-            <a href={curr.url} target="_blank" rel="noopener" className="button project__view">
-              View Project
-            </a>
-          </div>
-          <div className="project__image-wrap">
-            <img
-              src={curr.image}
-              alt={`Project Image: ${curr.title}`}
-              className={
-                this.state.animationDirection !== ``
-                  ? `project__image project__image--${
-                      this.state.animationDirection
-                    }`
-                  : `project__image`
-              }
-            />
+            <div className="project__image-wrap">
+              <img
+                src={curr.image}
+                alt={`Project Image: ${curr.title}`}
+                className={
+                  this.state.animationDirection !== ``
+                    ? `project__image project__image--${
+                        this.state.animationDirection
+                      }`
+                    : `project__image`
+                }
+              />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <p>loading</p>;
+    }
   }
 }
 
