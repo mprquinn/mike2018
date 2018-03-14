@@ -1,8 +1,11 @@
 .landing {
+  --move-x: 0px;
+  --move-y: 0px;
+  position: relative;
   padding-bottom: 85%;
   height: 0;
   background-color: var(--accentLight);
-  background-image: url("../images/landing-duotone-mobile.jpg");
+  // background-image: url("../images/landing-duotone-mobile.jpg");
   background-position: 50% 100%;
   background-size: 80%;
   background-repeat: no-repeat;
@@ -12,7 +15,82 @@
 
   @media screen and (min-width: 768px) {
     padding-bottom: 50%;
-    background-image: url("../images/landing-duotone.jpg");
+    // background-image: url("../images/landing-duotone.jpg");
+  }
+}
+
+.landing__parallax-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+  width: 100%;
+  perspective: 100vw;
+  transform-style: preserve-3d;
+}
+
+.landing__background {
+  position: absolute;
+  right: -50px;
+  bottom: -20px;
+  left: -50px;
+  z-index: 1;
+  width: calc(100% + 100px);
+  height: auto;
+  transition: transform 0.2s linear;
+  transform: translateX(calc(var(--move-x) * -1))
+    translateY(calc(var(--move-y) * -1));
+
+  @media screen and (min-width: 768px) {
+    height: calc(100% + 100px);
+    transform: translateX(calc(var(--move-x) * -1))
+      translateY(calc(var(--move-y) * -1));
+  }
+}
+
+.landing__midground {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  transition: transform 0.2s linear;
+  transform: translateX(calc(var(--move-x) * -0.5))
+    translateY(calc(var(--move-y) * -0.5));
+
+  @media screen and (min-width: 768px) {
+    top: auto;
+    right: -50px;
+    bottom: -20px;
+    left: -50px;
+    width: auto;
+    height: calc(100% + 100px);
+  }
+}
+
+.landing__foreground {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  transition: transform 0.2s linear;
+  transform: translateX(calc(var(--move-x) * -0.2))
+    translateY(calc(var(--move-y) * -0.2));
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+    height: calc(100% + 100px);
+    transform: translateX(calc(var(--move-x) * -0.2))
+      translateY(calc(var(--move-y) * -0.2));
   }
 }
 
@@ -40,7 +118,6 @@
   }
 
   @media screen and (min-width: 768px) {
-    
   }
 
   @media screen and (min-width: 1000px) {
@@ -66,7 +143,7 @@
 
 @for $i from 1 through 10 {
   .landing__title .char#{$i} {
-    transition-delay: #{$i*30}ms;
+    transition-delay: #{$i * 30}ms;
   }
 }
 

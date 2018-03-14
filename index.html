@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
   <title>Mike Quinn | Front-End Developer Calgary</title>
-  <meta name="description" content="Mike Quinn, Front-End Web Developer Calgary. Drupal React JS HTML SCSS Development."> 
+  <meta name="description" content="Mike Quinn, Front-End Web Developer Calgary. Drupal React JS HTML SCSS Development.">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script>
@@ -48,7 +48,26 @@
           <br> Calgary
         </h2>
       </div>
-
+      <div class="landing__parallax-wrapper">
+        <picture aria-hidden="true">
+          <source media="(min-width: 768px)" srcset="dist/images/background.jpg">
+          <source srcset="dist/images/background-mobile.jpg">
+          <img src="dist/images/background.jpg" alt="Landing section background" class="landing__background">
+        </picture>
+        <!-- <img src="dist/images/background.jpg" alt="" class="landing__background"> -->
+        <!-- <img src="dist/images/midground.png" alt="" class="landing__midground"> -->
+        <picture aria-hidden="true">
+          <source media="(min-width: 768px)" srcset="dist/images/midground.png">
+          <source srcset="dist/images/midground-mobile.png">
+          <img src="dist/images/midground.png" alt="Landing section midground" class="landing__midground">
+        </picture>
+        <!-- <img src="dist/images/foreground.png" alt="" class="landing__foreground"> -->
+        <picture aria-hidden="true">
+            <source media="(min-width: 768px)" srcset="dist/images/foreground.png">
+            <source srcset="dist/images/foreground-mobile.png">
+            <img src="dist/images/foreground.png" alt="Landing section foreground" class="landing__foreground">
+          </picture>
+      </div>
     </section>
 
     <section class="projects">
@@ -75,6 +94,8 @@
       </div>
       <p class="social__copyright">
         &copy; 2018 Mike Quinn &#x1F453;
+        <br>
+        mprquinn at gmail dot com
       </p>
     </section>
   </div>
