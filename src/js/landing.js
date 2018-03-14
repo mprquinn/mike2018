@@ -28,6 +28,23 @@ banner.addEventListener("mousemove", e => {
     .style.setProperty("--move-y", clamped.y + "px");
 });
 
+window.addEventListener('deviceorientation', (e) => {
+  const tilt = {
+    x: e.beta,
+    y: e.gamma
+  };
+  const clamped = {
+    x: tilt.x / bannerDims.w * limit.x - limit.x / 2,
+    y: tilt.y / bannerDims.h * limit.y - limit.y / 2
+  };
+  document
+    .querySelector(".landing")
+    .style.setProperty("--move-x", tilt.y + "px");
+  document
+    .querySelector(".landing")
+    .style.setProperty("--move-y", tilt.x -25 + "px");
+}, true);
+
 function sizeImages() {
   const bannerWrapDims = document.querySelector(".landing").getBoundingClientRect();
   console.log(bannerWrapDims);
