@@ -35,16 +35,17 @@
 .landing__background {
   position: absolute;
   right: -50px;
-  bottom: -20px;
+  bottom: -300px;
   left: -50px;
   z-index: 1;
-  width: calc(100% + 100px);
+  width: 150%;
   height: auto;
   transition: transform 0.2s linear;
   transform: translateX(calc(var(--move-x) * -1))
     translateY(calc(var(--move-y) * -1));
 
   @media screen and (min-width: 768px) {
+    bottom: -20px;
     height: calc(100% + 100px);
     transform: translateX(calc(var(--move-x) * -1))
       translateY(calc(var(--move-y) * -1));
